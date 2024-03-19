@@ -1,0 +1,16 @@
+<%- include('layout') -%>  
+
+<p id="bible">Hello</p>
+<input type="text", id="verse-num", onkeyup="if (event.keyCode === 13) { getBible() }">
+<button type="button", onclick='getBible()'> Search </button>
+<script>
+    function getBible() {
+        let verse = document.getElementById("verse-num").value;
+            fetch('https://bible-api.com/' + verse)
+            .then((response) => response.json())
+            .then((data) => {
+                document.getElementById("bible").innerHTML = data['text']
+            })
+        }
+</script>
+        
